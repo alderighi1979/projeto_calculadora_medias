@@ -1,3 +1,4 @@
+// Variáveis Escopo Global
 const form = document.getElementById('form-atividade');
 let linhas = "";
 const imgAprovado = `<img src="./images/aprovado.png" alt="Emoji Celebrando"/>`
@@ -8,6 +9,7 @@ const notaMinima = parseFloat(prompt("Digite a nota mínima: "))
 const arrayAtividade = [];
 const arrayNotas = [];
 
+// Remove comportamento de atualizar a página
 form.addEventListener('submit',function(e){
     e.preventDefault();
     
@@ -23,14 +25,17 @@ function adicionaLinha(){
     if(arrayAtividade.includes(inputNomeAtividade.value)){
         alert(`A atividade ${inputNomeAtividade.value} já foi inserida`)
     }else{
+        // A função push insere o input da atividade e nota em um array
         arrayAtividade.push(inputNomeAtividade.value);
         arrayNotas.push(parseFloat(inputNotaAtividade.value));
 
         let linha = `<tr>`;
         linha += `<td>${inputNomeAtividade.value}</td>`;
         linha += `<td>${inputNotaAtividade.value}</td>`;
+        //Utilização de operador ternario
         linha += `<td>${inputNotaAtividade.value >= notaMinima ? imgAprovado : imgReprovado}</td>`;
         linha += `</tr>`
+        // Insere uma nova linha sem substituir a linha já inserida
         linhas += linha;
 
         inputNomeAtividade.value = "";
